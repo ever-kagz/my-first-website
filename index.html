@@ -68,7 +68,51 @@
         footer p { font-size: 0.85rem; margin-bottom: 0.5rem; }
         .copyright { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; color: #8E8880; }
         @media (max-width: 768px) { nav ul { display: none; } .form-grid { grid-template-columns: 1fr; } .booking-container { padding: 2rem 1.5rem; } }
-    </style>
+        /* --- PHOTO GALLERY / LOOKBOOK --- */
+.gallery-section {
+    background-color: var(--bg-cream);
+    padding-top: 2rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    height: 360px;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    background-color: var(--bg-sand);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(30, 28, 26, 0.85));
+    color: var(--white);
+    padding: 2rem 1.2rem 1rem;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+        </style>
 </head>
 <body>
     <header>
@@ -138,6 +182,34 @@
                     <p>involves twists outs of hair like natural twists,cocotwists,havana curls and fluffy kinky.</p>
                 </div>
                 <span class="duration">⏱ 2 to 3 hrs</span>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" class="gallery-section">
+        <div class="section-header">
+            <span>Portfolio</span>
+            <h2>The Style Lookbook</h2>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://i.pinimg.com/736x/50/6e/70/506e7081238310fc90ca0b6d735ebecf.jpg" alt="knotless braids"
+                <div class="gallery-caption">Knotless Braids</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.pinimg.com/736x/e5/2e/d4/e52ed4347589250f67f1692feedde7dd.jpg" alt="knotless goddess braids">
+                <div class="gallery-caption">Signature Silk Press</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.pinimg.com/1200x/1c/8c/46/1c8c461689bfbcb4721c3600fa51a8a5.jpg" alt="Natural Hair Twist-outs">
+                <div class="gallery-caption">Natural Hair Twist-Outs</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.pinimg.com/736x/38/cf/9a/38cf9aa275d95d105d4434e34e27b2db.jpg" alt="twists">
+                <div class="gallery-caption">twists</div>
             </div>
         </div>
     </section>
