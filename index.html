@@ -148,23 +148,24 @@
             <h2>Reserve Your Chair</h2>
         </div>
         <div class="booking-container">
-            <form id="appointmentForm">
+            <form action="https://formsubmit.co/everlynekagiri@gmail.com" method="POST">
+
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="clientName">Full Name</label>
-                        <input type="text" id="clientName" placeholder="e.g. Amara Cole" required>
+                        <input type="text" name="fullname" id="clientName" placeholder="e.g. Amara Cole" required>
                     </div>
                     <div class="form-group">
                         <label for="clientPhone">Phone / WhatsApp Number</label>
-                        <input type="tel" id="clientPhone" placeholder="e.g. +254 700 000 000" required>
+                        <input type="tel" name="phone Number" id="clientphone" placeholder="e.g. +254 700 000 000" required>
                     </div>
                     <div class="form-group">
                         <label for="clientEmail">Email Address</label>
-                        <input type="email" id="clientEmail" placeholder="you@example.com" required>
+                        <input type="email "name="client Email" id="clientEmail" placeholder="you@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="serviceSelect">Select Service</label>
-                        <select id="serviceSelect" required>
+                        <select name="service" id="serviceSelect" required>
                             <option value="" disabled selected>Choose your treatment...</option>
                             <option value="knotless braid(ksh 700)">knotless braids — ksh 700</option>
                             <option value="knotless goddess braids (ksh 1000)">Knotless Goddess Braids — ksh 1000 </option>
@@ -176,7 +177,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bookingDate">Preferred Date</label>
-                        <input type="date" id="bookingDate" required>
+                        <input type="date" name="Preferred Date" id="bookingDate" required>
                     </div>
                     <div class="form-group">
                         <label>Preferred Time Slot</label>
@@ -186,11 +187,11 @@
                             <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
                             <div class="time-slot" data-time="04:30 PM">04:30 PM</div>
                         </div>
-                        <input type="hidden" id="selectedTime" required>
+                        <input type="hidden" name="Time Slot" id="selectedTime" required>
                     </div>
                     <div class="form-group full-width">
                         <label for="notes">Hair Notes / Inspiration (Optional)</label>
-                        <textarea id="notes" rows="3" placeholder="Tell me about your hair length, texture, or any special requests..."></textarea>
+                        <textarea name="Notes" id="notes" rows="3" placeholder="Tell me about your hair length, texture, or any special requests..."></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn-primary submit-btn">Confirm Appointment</button>
@@ -211,7 +212,7 @@
         <div class="copyright">&copy; 2026 Everlyne's glam spot. All Rights Reserved.</div>
     </footer>
 
-    <script>
+        <script>
         const dateInput = document.getElementById('bookingDate');
         const today = new Date().toISOString().split('T');
         dateInput.setAttribute('min', today);
@@ -227,37 +228,14 @@
             });
         });
 
-        const form = document.getElementById('appointmentForm');
-        const confirmationBox = document.getElementById('confirmationBox');
-        const confirmationText = document.getElementById('confirmationText');
-
+        const form = document.querySelector('form');
         form.addEventListener('submit', function(e) {
-            e.preventDefault();
             if (!selectedTimeInput.value) {
+                e.preventDefault();
                 alert('Please select a preferred time slot before confirming.');
-                return;
             }
-            const name = document.getElementById('clientName').value;
-            const service = document.getElementById('serviceSelect').value;
-            const date = document.getElementById('bookingDate').value;
-            const time = selectedTimeInput.value;
-
-            confirmationText.innerHTML = `
-                Thank you, <strong>${name}</strong>. Your appointment for <strong>${service}</strong> 
-                is reserved for <strong>${date}</strong> at <strong>${time}</strong>.<br><br>
-                We have sent a confirmation note with salon directions to your contact details.
-            `;
-            form.style.display = 'none';
-            confirmationBox.style.display = 'block';
         });
-
-        function resetBooking() {
-            form.reset();
-            slots.forEach(s => s.classList.remove('selected'));
-            selectedTimeInput.value = '';
-            form.style.display = 'block';
-            confirmationBox.style.display = 'none';
-        }
     </script>
+
 </body>
 </html>
