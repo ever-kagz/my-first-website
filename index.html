@@ -3,18 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EVERLYNE'S GLAMOUR SPOT</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #FAF8F5; --bg-sand: #F2EDE4; --text-dark: #1E1C1A;
+            --text-muted: #6B655E; --gold-accent: #C5A059; --gold-hover: #B08D48;
+            --white: #FFFFFF; --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Montserrat', sans-serif; --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-cream); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, .brand-logo { font-family: var(--font-serif); font-weight: 600; }
+        a { text-decoration: none; color: inherit; }
+        header { position: fixed; top: 0; width: 100%; background: rgba(250, 248, 245, 0.95); backdrop-filter: blur(10px); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
+        .brand-logo { font-size: 1.8rem; letter-spacing: 3px; color: var(--text-dark); }
+        .brand-logo span { color: var(--gold-accent); }
+        nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        nav a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; transition: var(--transition); }
+        nav a:hover { color: var(--gold-accent); }
+        .btn-nav { background-color: var(--text-dark); color: var(--white) !important; padding: 0.7rem 1.5rem; border-radius: 2px; }
+        .btn-nav:hover { background-color: var(--gold-accent); }
+        .hero { min-height: 95vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 5% 4rem; background: linear-gradient(rgba(30, 28, 26, 0.55), rgba(30, 28, 26, 0.65)), url('https://unsplash.com') center/cover no-repeat; color: var(--white); }
+        .hero-content { max-width: 750px; }
+        .hero-subtitle { text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem; color: var(--gold-accent); margin-bottom: 1rem; display: block; font-weight: 500; }
+        .hero h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 1.1; margin-bottom: 1.5rem; font-weight: 500; }
+        .hero h1 em { font-style: italic; color: #F3E5C8; }
+        .hero p { font-size: 1.05rem; font-weight: 300; margin-bottom: 2.5rem; color: #EAE6DF; }
+        .btn-primary { display: inline-block; background-color: var(--gold-accent); color: var(--white); padding: 1rem 2.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; border: none; cursor: pointer; transition: var(--transition); }
+        .btn-primary:hover { background-color: var(--gold-hover); transform: translateY(-2px); }
+        section { padding: 6rem 8%; }
+        .section-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+        .section-header span { color: var(--gold-accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 600; }
+        .section-header h2 { font-size: 2.8rem; margin-top: 0.5rem; color: var(--text-dark); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--white); padding: 2.5rem 2rem; border: 1px solid rgba(197, 160, 89, 0.25); transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05); border-color: var(--gold-accent); }
+        .service-top { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed #E2DCD3; padding-bottom: 1rem; margin-bottom: 1rem; }
+        .service-top h3 { font-size: 1.5rem; }
+        .price { font-weight: 600; color: var(--gold-accent); font-size: 1.1rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .duration { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dark); font-weight: 500; }
+        .booking-section { background-color: var(--bg-sand); }
+        .booking-container { max-width: 850px; margin: 0 auto; background: var(--white); padding: 3.5rem; box-shadow: 0 20px 50px rgba(30, 28, 26, 0.06); border-top: 4px solid var(--gold-accent); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark); }
+        input, select, textarea { padding: 0.9rem 1rem; border: 1px solid #DCD6CD; background-color: var(--bg-cream); font-family: var(--font-sans); font-size: 0.95rem; color: var(--text-dark); outline: none; transition: var(--transition); }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold-accent); background-color: var(--white); }
+        .time-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.8rem; margin-top: 0.3rem; }
+        .time-slot { padding: 0.7rem; text-align: center; border: 1px solid #DCD6CD; background: var(--bg-cream); cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: var(--transition); }
+        .time-slot:hover { border-color: var(--gold-accent); }
+        .time-slot.selected { background-color: var(--text-dark); color: var(--white); border-color: var(--text-dark); }
+        .submit-btn { width: 100%; margin-top: 1.5rem; padding: 1.1rem; font-size: 0.95rem; }
+        .confirmation-box { display: none; text-align: center; padding: 2rem; background: var(--bg-cream); border: 1px solid var(--gold-accent); margin-top: 2rem; }
+        .confirmation-box h3 { font-size: 2rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .confirmation-box p { color: var(--text-muted); margin-bottom: 1rem; }
+        footer { background-color: var(--text-dark); color: #CFC9C0; text-align: center; padding: 4rem 5% 2rem; }
+        footer .brand-logo { color: var(--white); margin-bottom: 1rem; display: inline-block; }
+        footer p { font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .copyright { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; color: #8E8880; }
+        @media (max-width: 768px) { nav ul { display: none; } .form-grid { grid-template-columns: 1fr; } .booking-container { padding: 2rem 1.5rem; } }
+    </style>
 </head>
 <body>
-    <h1>Meru university</h1>
-    <h2>Meru university</h2>
-    <h3>Meru university</h3>
-    <h4>Meru university</h4>
-    <h5>Meru university</h5>
-    <h6>Meru university</h6>
-    <p>Lorem, ipsum dolor sit amet<b> consectetur</b> adipisicing elit.
-         Commodi delectus aperiam iusto dolorum provident illo nam facere 
-          est harum quia, cumque illum repellat?
-         Exercitationem minima sit dolor consequatur quidem!</p>
+    <header>
+        <a href="#" class="brand-logo">EVERLYNE GLAMOUR<span>.</span></a>
+        <nav>
+            <ul>
+                <li><a href="#services">Menu</a></li>
+                <li><a href="#about">The Studio</a></li>
+                <li><a href="#book" class="btn-nav">Reserve Chair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">Feel good in your hair</span>
+            <h1>Crown Yourself in <em>Effortless</em> Elegance</h1>
+            <p>tailored hairstyles crafted to turn every head when you walk into the room.</p>
+            <a href="#book" class="btn-primary">Book Your Transformation</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-header">
+            <span>services offered</span>
+            <h2>The hairstyles menu</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div>
+                    <div class="service-top"><h3>knotless braids</h3><span class="price">ksh 700 </span></div>
+                    <p>the price indicated is when the braids are in their normal length.Increment in length results to an added cost.</p>
+                </div>
+                <span class="duration">⏱ 2 hrs</span>
+            </div>
+            <div class="service-card">
+                <div>
+                    <div class="service-top"><h3>Knotless Goddess Braids</h3><span class="price">ksh 1000</span></div>
+                    <p>Tension-free, lightweight waist-length braids finished with soft curly human-hair tendrils.</p>
+                </div>
+                <span class="duration">⏱ 4 Hours</span>
+            </div>
+            <div class="service-card">
+                <div>
+                    <div class="service-top"><h3>crochetted hair</h3><span class="price">ksh 600</span></div>
+                    <p>includes any hair crochetted.</p>
+                </div>
+                <span class="duration">⏱ 2 Hours</span>
+            </div>
+            <div class="service-card">
+                <div>
+                    <div class="service-top"><h3>plain cornrows</h3><span class="price">ksh 100 to 150</span></div>
+                    <p>straight plain cornrows.</p>
+                </div>
+                <span class="duration">⏱30 min to 1hr </span>
+            </div>
+            <div class="service-card">
+                <div>
+                    <div class="service-top"><h3>natural hair twist-outs</h3><span class="price">ksh 300</span></div>
+                    <p>twist outs on natural hair.</p>
+                </div>
+                <span class="duration">⏱ 1 hr</span>
+            </div>
+            <div class="service-card">
+                <div>
+                    <div class="service-top"><h3>twists</h3><span class="price">ksh 700 to 900</span></div>
+                    <p>involves twists outs of hair like natural twists,cocotwists,havana curls and fluffy kinky.</p>
+                </div>
+                <span class="duration">⏱ 2 to 3 hrs</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="book" class="booking-section">
+        <div class="section-header">
+            <span>Reservations</span>
+            <h2>Reserve Your Chair</h2>
+        </div>
+        <div class="booking-container">
+            <form id="appointmentForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="clientName">Full Name</label>
+                        <input type="text" id="clientName" placeholder="e.g. Amara Cole" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">Phone / WhatsApp Number</label>
+                        <input type="tel" id="clientPhone" placeholder="e.g. +254 700 000 000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail">Email Address</label>
+                        <input type="email" id="clientEmail" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceSelect">Select Service</label>
+                        <select id="serviceSelect" required>
+                            <option value="" disabled selected>Choose your treatment...</option>
+                            <option value="knotless braid(ksh 700)">knotless braids — ksh 700</option>
+                            <option value="knotless goddess braids (ksh 1000)">Knotless Goddess Braids — ksh 1000 </option>
+                            <option value="crochetted hair (ksh 600)">crochetted hair — ksh 600</option>
+                            <option value="plain cornrows (ksh 100 to 150)">plain cornrows — ksh 100 to 150</option>
+                            <option value="natural hair twist-outs (ksh 300)">natural hair twist-outs — ksh 300</option>
+                            <option value="twists (ksh 700 to 900)">twists — ksh 700 to 900</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingDate">Preferred Date</label>
+                        <input type="date" id="bookingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time Slot</label>
+                        <div class="time-slots" id="timeSlots">
+                            <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
+                            <div class="time-slot" data-time="11:30 AM">11:30 AM</div>
+                            <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
+                            <div class="time-slot" data-time="04:30 PM">04:30 PM</div>
+                        </div>
+                        <input type="hidden" id="selectedTime" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="notes">Hair Notes / Inspiration (Optional)</label>
+                        <textarea id="notes" rows="3" placeholder="Tell me about your hair length, texture, or any special requests..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary submit-btn">Confirm Appointment</button>
+            </form>
+
+            <div class="confirmation-box" id="confirmationBox">
+                <h3>You're On The List ✨</h3>
+                <p id="confirmationText"></p>
+                <button class="btn-primary" onclick="resetBooking()" style="padding: 0.7rem 1.5rem; font-size: 0.8rem;">Book Another Session</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <a href="#" class="brand-logo">EVERLYNE'S GLAM SPOT<span>.</span></a>
+        <p>By Appointment Only • Luxury hair salon</p>
+        <p>mon – Sat: 9:00 AM – 6:30 PM | Instagram: @everlyne_glam spot</p>
+        <div class="copyright">&copy; 2026 Everlyne's glam spot. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        const dateInput = document.getElementById('bookingDate');
+        const today = new Date().toISOString().split('T');
+        dateInput.setAttribute('min', today);
+
+        const slots = document.querySelectorAll('.time-slot');
+        const selectedTimeInput = document.getElementById('selectedTime');
+
+        slots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                slots.forEach(s => s.classList.remove('selected'));
+                slot.classList.add('selected');
+                selectedTimeInput.value = slot.getAttribute('data-time');
+            });
+        });
+
+        const form = document.getElementById('appointmentForm');
+        const confirmationBox = document.getElementById('confirmationBox');
+        const confirmationText = document.getElementById('confirmationText');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!selectedTimeInput.value) {
+                alert('Please select a preferred time slot before confirming.');
+                return;
+            }
+            const name = document.getElementById('clientName').value;
+            const service = document.getElementById('serviceSelect').value;
+            const date = document.getElementById('bookingDate').value;
+            const time = selectedTimeInput.value;
+
+            confirmationText.innerHTML = `
+                Thank you, <strong>${name}</strong>. Your appointment for <strong>${service}</strong> 
+                is reserved for <strong>${date}</strong> at <strong>${time}</strong>.<br><br>
+                We have sent a confirmation note with salon directions to your contact details.
+            `;
+            form.style.display = 'none';
+            confirmationBox.style.display = 'block';
+        });
+
+        function resetBooking() {
+            form.reset();
+            slots.forEach(s => s.classList.remove('selected'));
+            selectedTimeInput.value = '';
+            form.style.display = 'block';
+            confirmationBox.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
